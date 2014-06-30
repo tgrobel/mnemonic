@@ -21,13 +21,15 @@ package com.tomekgrobel.mnemonic
 
 import play.api.{Logger, Plugin, Application}
 import shade.memcached.{Memcached => ShadeMemcached}
+import com.tomekgrobel.mnemonic.client.{ReactiveMemcachedClientAPI, ClientFactory}
+import scala.concurrent.ExecutionContext.Implicits.{global => ec}
 
 /**
  * Core class of reactive Memcached client plugin.
  * <br>
  * It should be registered in application configuration.
  */
-class MnemonicPlugin(app: Application, clientFactory: ClientFactory = new ClientFactory()) extends Plugin {
+class MnemonicPlugin(app: Application, clientFactory: ClientFactory = ClientFactory()) extends Plugin {
 
   private type MemcachedClient = ShadeMemcached with ReactiveMemcachedClientAPI
 
@@ -54,7 +56,7 @@ class MnemonicPlugin(app: Application, clientFactory: ClientFactory = new Client
    */
   override def onStart() {
     logger.info("Starting Mnemonic plugin...")
-    clientInstance = Some(clientFactory.newInstance)
+    clientInstance = Some(clientFactory.create)
     logger.info("Mnemonic plugin started successfully.")
   }
 

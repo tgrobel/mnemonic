@@ -17,7 +17,7 @@
  *
  */
 
-package com.tomekgrobel.mnemonic
+package com.tomekgrobel.mnemonic.client
 
 import scala.concurrent.duration.Duration
 import scala.concurrent.duration.Duration._

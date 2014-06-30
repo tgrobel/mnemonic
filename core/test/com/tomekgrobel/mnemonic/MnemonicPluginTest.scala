@@ -27,6 +27,7 @@ import org.scalatest.mock.MockitoSugar._
 import shade.memcached.{Codec, Memcached => ShadeMemcached}
 import scala.concurrent.duration.Duration
 import scala.concurrent.Future
+import com.tomekgrobel.mnemonic.client.{ReactiveMemcachedClientAPI, ClientFactory}
 
 class MnemonicPluginTest extends FunSpec {
 
@@ -88,7 +89,7 @@ object MnemonicPluginTest {
 
   def someClientFactory = {
     val factory = mock[ClientFactory]
-    when(factory.newInstance).thenReturn(someClient)
+    when(factory.create).thenReturn(someClient)
     factory
   }
 }

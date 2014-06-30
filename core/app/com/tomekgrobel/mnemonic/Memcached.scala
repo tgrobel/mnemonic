@@ -21,9 +21,10 @@ package com.tomekgrobel.mnemonic
 
 import play.api._
 import scala.language.implicitConversions
+import com.tomekgrobel.mnemonic.client.ReactiveMemcachedClientAPI
 
 /**
- * Object to easy access reactive Memcached client [[com.tomekgrobel.mnemonic.ReactiveMemcachedClientAPI API]].
+ * Object to easy access reactive Memcached client [[com.tomekgrobel.mnemonic.client.ReactiveMemcachedClientAPI API]].
  * <br>
  * All methods delegates to API, and can be used directly from object.
  */
@@ -31,7 +32,7 @@ object Memcached {
 
   /**
    * Implicit function to effortless delegate to actual reactive Memcached client
-   * [[com.tomekgrobel.mnemonic.ReactiveMemcachedClientAPI API]].
+   * [[com.tomekgrobel.mnemonic.client.ReactiveMemcachedClientAPI API]].
    * <br>
    * ===It should not be used directly.===
    * @param o object to add API method to
