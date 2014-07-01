@@ -22,17 +22,20 @@ package com.tomekgrobel.mnemonic.client
 import shade.memcached.{Protocol => ProtocolEnumeration, FailureMode => FailureModeEnumeration, Configuration => ClientConfiguration, AuthConfiguration}
 import concurrent.duration._
 import ClientConfigurationReader._
-import play.api.{Configuration => PlayConfiguration}
+import play.api.{Configuration => PlayConfiguration, Logger}
 
 class ClientConfigurationReader(val globalConfig: PlayConfiguration) {
 
   private val mnemonicConfiguration = readMnemonicConfiguration()
+
+  private lazy val logger = Logger("mnemonic")
 
   /**
    * Provides Memcached client configuration based on configuration file.
    * @return <code>Some</code> Memcached client configuration or <code>None</code> if mock is configured.
    */
   def readClientConfiguration: Option[ClientConfiguration] = {
+    logger.info("Reading configuration...")
     if (mockConfigured) {
       None
     } else {
@@ -82,6 +85,7 @@ class ClientConfigurationReader(val globalConfig: PlayConfiguration) {
   }
 
   private def readMnemonicConfiguration(): PlayConfiguration = {
+    logger.info("Loading configuration...")
     globalConfig.getConfig(MnemonicConfiguration).getOrElse {
       throw new MnemonicPluginConfigurationMissing
     }

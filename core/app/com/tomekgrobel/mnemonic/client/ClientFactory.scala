@@ -23,6 +23,7 @@ import shade.memcached.{MemcachedImpl => ShadeMemcachedImpl, Memcached => ShadeM
 import scala.concurrent.{ExecutionContextExecutor, ExecutionContext}
 import shade.memcached.Configuration
 import scala.Some
+import play.api.Logger
 
 /**
  * Memcached client factory.
@@ -32,14 +33,22 @@ class ClientFactory(clientConfigurationReader: ClientConfigurationReader,
                     fakeClientFactory: FakeClientFactory = ClientFactory.fakeClient())
                    (implicit ec: ExecutionContextExecutor) {
 
+  private lazy val logger = Logger("mnemonic")
+
   /**
    * Creates new instance of Memcached client.
    * @return new instance of Memcached client.
    */
   def create: ShadeMemcached with ReactiveMemcachedClientAPI = {
     clientConfigurationReader.readClientConfiguration match {
-      case Some(configuration) => realClientFactory.create(configuration, ec)
-      case None => fakeClientFactory.create(ec)
+      case Some(configuration) => {
+        logger.info("Starting Memcached client...")
+        realClientFactory.create(configuration, ec)
+      }
+      case None => {
+        logger.warn("Starting mock Memcached client...")
+        fakeClientFactory.create(ec)
+      }
     }
   }
 }

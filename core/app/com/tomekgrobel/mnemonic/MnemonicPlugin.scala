@@ -57,9 +57,9 @@ class MnemonicPlugin(app: Application, clientFactory: ClientFactory = defaultCli
    * Instantiation of Memcached client.
    */
   override def onStart() {
-    logger.info("Starting Mnemonic plugin...")
+    logger.info("Mnemonic plugin initialization...")
     clientInstance = Some(clientFactory.create)
-    logger.info("Mnemonic plugin started successfully.")
+    logger.info("Mnemonic plugin initialization completed.")
   }
 
   /**
