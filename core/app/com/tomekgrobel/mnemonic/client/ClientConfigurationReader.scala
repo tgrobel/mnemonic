@@ -23,8 +23,6 @@ import shade.memcached.{Protocol => ProtocolEnumeration, FailureMode => FailureM
 import concurrent.duration._
 import ClientConfigurationReader._
 import play.api.{Configuration => PlayConfiguration}
-import play.api.Play.current
-
 
 class ClientConfigurationReader(val globalConfig: PlayConfiguration) {
 
@@ -104,8 +102,8 @@ object ClientConfigurationReader {
   val FailureMode = "failureMode"
   val OperationTimeout = "operationTimeout"
 
-  def apply(): ClientConfigurationReader = {
-    new ClientConfigurationReader(play.api.Play.configuration)
+  def apply(globalConfig: PlayConfiguration): ClientConfigurationReader = {
+    new ClientConfigurationReader(globalConfig)
   }
 }
 

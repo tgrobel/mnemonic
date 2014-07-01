@@ -46,8 +46,8 @@ class ClientFactory(clientConfigurationReader: ClientConfigurationReader,
 
 object ClientFactory {
 
-  def apply()(implicit ec: ExecutionContextExecutor): ClientFactory = {
-    new ClientFactory(ClientConfigurationReader())
+  def apply(clientConfigurationReader: ClientConfigurationReader)(implicit ec: ExecutionContextExecutor): ClientFactory = {
+    new ClientFactory(clientConfigurationReader)
   }
 
   private def realClient(): RealClientFactory = {
