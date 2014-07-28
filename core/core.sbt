@@ -18,3 +18,5 @@ libraryDependencies ++= Seq(
 testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-oDW", "-u", crossTarget.value + "/test-reports", "-h", crossTarget.value + "/test-reports-html")
 
 resolvers += "SpyMemcached" at "http://files.couchbase.com/maven2/"
+
+javaOptions in Test ++= Seq("-Dmnemonic.mock=true", "-Dlogger.mnemonic=ERROR")
