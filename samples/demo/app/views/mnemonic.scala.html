@@ -1,0 +1,7 @@
+@(message: String)
+
+@main("Welcome to Play") {
+
+    @play.twirl.api.Html(s"Message read from Memcached server: $message")
+
+}

@@ -31,7 +31,15 @@ import MnemonicPlugin._
  * <br>
  * It should be registered in application configuration.
  */
-class MnemonicPlugin(app: Application, clientFactory: ClientFactory = defaultClientFactory) extends Plugin {
+class MnemonicPlugin(app: Application, clientFactory: ClientFactory) extends Plugin {
+
+  /**
+   * Additional constructor for instantiate plugin by Play framework.
+   * @param app application
+   */
+  def this(app: Application) {
+    this(app, defaultClientFactory)
+  }
 
   private type MemcachedClient = ShadeMemcached with ReactiveMemcachedClientAPI
 
@@ -57,7 +65,6 @@ class MnemonicPlugin(app: Application, clientFactory: ClientFactory = defaultCli
    * Instantiation of Memcached client.
    */
   override def onStart() {
-    logger.info("Mnemonic plugin initialization...")
     clientInstance = Some(clientFactory.create)
     logger.info("Mnemonic plugin initialization completed.")
   }

@@ -2,6 +2,6 @@
 
 @main("Welcome to Play") {
 
-    @play20.welcome(message)
+    @play.twirl.api.Html(s"Message saved to Memcached server: <a href='${routes.Application.memcached}'>$message</a>")
 
 }
