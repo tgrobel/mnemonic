@@ -1,3 +1,5 @@
+// usage scoverage:test
+
 instrumentSettings
 
 ScoverageKeys.highlighting := true
