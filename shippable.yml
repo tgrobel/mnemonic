@@ -1,0 +1,23 @@
+language: scala
+
+scala:
+    - 2.11.2
+
+before_script:
+  - mkdir -p shippable/codecoverage
+  - mkdir -p shippable/testresults
+
+script:
+  - export SBT_OPTS="-XX:+CMSClassUnloadingEnabled -XX:PermSize=256M -XX:MaxPermSize=512M"
+  - sbt clean scoverage:test
+
+after_script:
+  - mv core/target/scala-2.11/coverage-report/cobertura.xml $PWD/shippable/codecoverage/
+  - mv core/target/scala-2.11/test-reports/*.xml $PWD/shippable/testresults/
+
+notifications:
+   email:
+       recipients:
+           - tgrobel@gmail.com
+       on_success: change
+       on_failure: always
