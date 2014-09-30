@@ -8,7 +8,13 @@ It is compiled with `Scala 2.11`. Internally it uses [Shade](https://github.com/
 
 ## Configuration
 
-**Warning! At least for now the module is not deployed to any repository. It will soon change. If you want to play with it you must build it locally.**
+**Warning! At least for now only SNAPSHOT version is available.**
+
+Add snapshot resolver:
+
+```scala
+resolvers += "Sonatype snapshots" at "https://oss.sonatype.org/content/repositories/snapshots/"
+```
 
 Add to your dependencies:
 
