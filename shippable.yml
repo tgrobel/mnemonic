@@ -1,7 +1,12 @@
 language: scala
 
 scala:
-    - 2.11.2
+  - 2.11.2
+
+env:
+  global:
+    - TRAVIS_JOB_ID=$JOB_ID
+    - secure: SJmX30vFk2VgfFPlVjujwhxe2jT8XWCgMa7tPX9hxhGhLH7Wyl5WvjRXIMsRgEJLbtRyQ9Mcr4V1QNriOHLWe8EBBnX0I6xrQXXy7UPMYtE34YnIulsrdt4wS8b2RXtWP5kBF02O6hO/Yt2j9gZB5GvXto0m3ZhsPWO0MBNVvggAm/MIAGIhOwj/nuQWCIyg4DAP5lzbdyyYVSWfLtpiMjXyK2OlSGe8NIVt9yKEb7g4zAPQG/2NDTu/xXJU7af+wbd2IsXzWAT835eBKiti4eqcc+r8L+0dTk0MRDsot9M5SDGApGBwXMmpHrCwRktiHsgWONE4ZmMzAU45985Q4Q==
 
 before_script:
   - mkdir -p shippable/codecoverage
@@ -9,15 +14,15 @@ before_script:
 
 script:
   - export SBT_OPTS="-XX:+CMSClassUnloadingEnabled -XX:PermSize=256M -XX:MaxPermSize=512M"
-  - sbt clean scoverage:test
+  - sudo sbt clean coveralls
 
 after_script:
   - mv core/target/scala-2.11/coverage-report/cobertura.xml $PWD/shippable/codecoverage/
   - mv core/target/scala-2.11/test-reports/*.xml $PWD/shippable/testresults/
 
 notifications:
-   email:
-       recipients:
-           - tgrobel@gmail.com
-       on_success: change
-       on_failure: always
+  email:
+    recipients:
+      - tgrobel@gmail.com
+    on_success: change
+    on_failure: always

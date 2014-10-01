@@ -1,6 +1,8 @@
-// usage scoverage:test
+// usage sbt scoverage:test / sbt coveralls
 
 instrumentSettings
+
+coverallsSettings
 
 ScoverageKeys.highlighting := true
 
