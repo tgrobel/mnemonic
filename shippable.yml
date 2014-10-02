@@ -14,6 +14,11 @@ script:
   - export SBT_OPTS="-XX:+CMSClassUnloadingEnabled -XX:PermSize=256M -XX:MaxPermSize=512M"
   - sbt clean coveralls
 
+after_script:
+  # copy test & coverage results for shippable to pars them
+  - mkdir -p $PWD/shippable/codecoverage/; cp core/target/scala-2.11/coverage-report/cobertura.xml $_
+  - mkdir -p $PWD/shippable/testresults/; cp core/target/scala-2.11/test-reports/*.xml $_
+
 notifications:
   email:
     recipients:
