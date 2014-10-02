@@ -26,8 +26,8 @@ import scala.concurrent.Future
 
 
 /**
- * Trait based on [[shade.memcached.Memcached Memcached]], from internally used client.
- * It is needed to cover [[shade.memcached.Memcached#close() close()]] method.
+ * Trait based on `shade.memcached.Memcached`, from internally used client.
+ * It is needed to cover `shade.memcached.Memcached#close()` method.
  * <br>
  * Additionally it defines default expiration time as an infinity.
  */

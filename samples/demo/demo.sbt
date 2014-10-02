@@ -6,6 +6,10 @@ organization := Common.organization
 
 scalaVersion := Common.scalaVersion
 
+publishArtifact := false
+
+publishTo := Some(Resolver.file("Unused transient repository", file("target")))
+
 libraryDependencies += organization.value %% "mnemonic" % version.value
 
 resolvers += Resolver.sonatypeRepo("snapshots")

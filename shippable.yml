@@ -6,6 +6,7 @@ scala:
 env:
   global:
     - secure: S+TW6LF17aFRhncEU8ctuBPGwAKASUr2XIsOjd+VsMGfSwGU1Puvb/YZKVUAU9metRjDAO58tdyA5yPyCsjYftBRxp2gl29Hd3vFdZBKeRmBP+/gqe7yKu1QdAOMeNeT6lcvR7rgrr2fuZlf7PLbfFbcY5ZJQXRxoQB1vx043bMUV1k/XRn3PKVVB6JlYyzxl+yw6qiluzo+6V9JTohvJDG7y9+NRulIMnDSRU5GluHKwoXO2UqcGi0Qy897jStsMUHjBq9Bm9isQ33t8RM+tQpx6OOb/Nx6LbvjdEPnwk3iTUm+iP1rWOV5TLyHvhDAqNwMZZvsgvf0hdQFU9XQsQ==
+    - secure: L9oRh1Z1WJE7ZdiyZV7345TudUlYFrSeUw6clVq9sD8qaqZt+kDFo4hqyN4FwHbInOyuxowvHbxDb2hAeA+QIseD59wsWcOJPyc8E2y2UUo/v2DeL7xB99gNDB1CE8xTGWp2Mjq8dP8nCfRFgO/z5uf2cq3qmMAyUH78Gu1oZI0x69H7bDBsCtP4HWRuiQYeciNhalPG/5nYyX+knA2jO1wasn+7/CZ+lgH7jGbMu7n3tsOsj9IJbteXUpqxgEzSOyftr3O3w+NrK3LBxYlobJnJ1mgASuT4ShpWOF1UMKmWKZHIuMGbskn1maBiIMogCe+yBwfSRjGSFhbo9C5JLQ==
 
 before_script:
   - unset TRAVIS_JOB_ID # to force coveralls to use token
@@ -18,6 +19,9 @@ after_script:
   # copy test & coverage results for shippable to pars them
   - mkdir -p $PWD/shippable/codecoverage/; cp core/target/scala-2.11/coverage-report/cobertura.xml $_
   - mkdir -p $PWD/shippable/testresults/; cp core/target/scala-2.11/test-reports/*.xml $_
+
+after_success:
+  - sbt publish
 
 notifications:
   email:
