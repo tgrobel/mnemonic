@@ -1,5 +1,6 @@
 Mnemonic - Reactive Memcached Module for Scala Play 2.3
 =======================================================
+[![Build Status](http://tomekgrobel.com/shippable/badge.php?project=542dbeb080088cee586d308b&branch=master)](https://app.shippable.com/projects/542dbeb080088cee586d308b/builds/latest) [![Coverage Status](https://img.shields.io/coveralls/tgrobel/mnemonic.svg?style=flat-square)](https://coveralls.io/r/tgrobel/mnemonic?branch=master) ![Latest Release](http://img.shields.io/maven-central/v/com.tomekgrobel/mnemonic.svg?style=flat-square)&nbsp;![Scala Version](http://img.shields.io/badge/scala-v2.11.x-DC322F.svg?style=flat-square)&nbsp;![Play Version](http://img.shields.io/badge/play_framework-v2.3.x-brightgreen.svg?style=flat-square)
 
 Module that brings asynchronous communication with [Memcached] (http://memcached.org/) service to Scala Play 2.3 applications. 
 
