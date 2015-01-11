@@ -33,8 +33,6 @@ class MemcachedTest extends InAppFunSpec {
 
     describe("when used in application started without plugin defined") {
 
-      implicit val app: FakeApplication = FakeApplication()
-
       in_app_it("should throw exception") {
         intercept[MnemonicPluginNotRegistered] {
           Memcached.add[String](key, value)
@@ -119,6 +117,8 @@ object MemcachedTest {
 }
 
 trait InAppFunSpec extends FunSpec {
+
+  implicit val app: FakeApplication = FakeApplication()
 
   protected val in_app_it = new ItWordInApp
 
